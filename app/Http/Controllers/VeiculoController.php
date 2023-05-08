@@ -2,64 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Veiculo;
 use Illuminate\Http\Request;
+use App\Models\Veiculo;
 
-class VeiculoController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+class VeiculoController extends Controller{
+
+    public function index(){
+        return Veiculo::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function show(int $id){
+        $result = Veiculo::find($id);
+
+        if($result) return $result;
+
+        return [];
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+        return $request->input();
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Veiculo $veiculo)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Veiculo $veiculo)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Veiculo $veiculo)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Veiculo $veiculo)
-    {
-        //
+    public function delete(int $id){
+        $veiculo = Veiculo::find($id);
+        if($veiculo){
+            $veiculo->delete();
+            return "Veículo excluído com sucesso";
+        }
+        return "Veículo não encontrado";
     }
 }
