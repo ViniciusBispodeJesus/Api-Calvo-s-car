@@ -26,7 +26,7 @@ class FuncionarioController extends Controller
 
         $funcionario = new Funcionario;
 
-        $clientes = Ciente::all();
+        $clientes = Cliente::all();
         $existe = false;
         foreach($clientes as $c => $v){
             if($c === "cpf" && $v === $valor['cpf']) $existe = true;

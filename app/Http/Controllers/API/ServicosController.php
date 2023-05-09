@@ -43,6 +43,8 @@ class ServicosController extends Controller
     public function update(Request $request, int $id)
     {
         $valor = $request->input();
+
+        $servicos = Servicos::find($id);
         
         $servicos->valor = $valor['valor'];
 

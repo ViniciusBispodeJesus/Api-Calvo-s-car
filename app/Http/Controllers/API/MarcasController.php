@@ -59,8 +59,6 @@ class MarcasController extends Controller
                 "message" => $e->getMessage()
             ];
         }
-
-        return $valor;
     }
     
     public function destroy(int $id)

@@ -70,7 +70,5 @@ class ModelosController extends Controller
                 "message" => $e->getMessage()
             ];
         }
-
-        return $valor;
     }
 }
