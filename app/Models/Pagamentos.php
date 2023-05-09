@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Pagamentos extends Model
 {
     use HasFactory;
+    protected $table = 'concessionaria.pagamento';
+    protected $primaryKey = 'id_pagamento';
+    const CREATED_AT = null;
+    const UPDATED_AT = null;
 }

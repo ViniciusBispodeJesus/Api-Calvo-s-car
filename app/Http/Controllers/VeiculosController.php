@@ -50,8 +50,6 @@ class VeiculosController extends Controller{
     public function delete(int $id){
         $veiculo = Veiculo::destroy($id);
         
-        return veiculo;
+        return $veiculo;
     }
-
-    
 }

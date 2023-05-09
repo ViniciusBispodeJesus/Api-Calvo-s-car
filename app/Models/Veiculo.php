@@ -10,4 +10,7 @@ class Veiculo extends Model
     use HasFactory;
     protected $table = 'concessionaria.veiculo';
     protected $primaryKey = 'id_veiculo';
+
+    const CREATED_AT = null;
+    const UPDATED_AT = null;
 }
