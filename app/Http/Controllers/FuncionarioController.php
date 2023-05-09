@@ -12,7 +12,7 @@ class FuncionarioController extends Controller
      */
     public function index()
     {
-        //
+        return Funcionario::all();
     }
 
     /**

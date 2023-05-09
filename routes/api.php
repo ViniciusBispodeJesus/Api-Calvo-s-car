@@ -11,13 +11,14 @@ use App\Http\Controllers\{
     FuncionarioController,
     PagamentosController,
     ServicosController,
-    SolicitacoesController
+    SolicitacoesController,
+    ModelosController
 };
 
 Route::apiResource('/marcas', MarcasController::class);
 Route::apiResource('/modelos', ModelosController::class);
 Route::apiResource('/clientes', ClientesController::class); //vt
-Route::apiResource('/funcionarios', FuncionariosController::class); //vt
+Route::apiResource('/funcionarios', FuncionarioController::class); //vt
 Route::apiResource('/veiculos', VeiculosController::class);
 Route::apiResource('/servicos', ServicosController::class);
 Route::apiResource('/solicitacoes', SolicitacoesController::class);
