@@ -81,7 +81,6 @@ class FornecedoresController extends Controller
             ];
         }
 
-        return $fornecedores;
     }
 
     /**

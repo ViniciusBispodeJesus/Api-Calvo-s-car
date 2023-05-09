@@ -36,7 +36,7 @@ class ServicosController extends Controller
             ];
         }
 
-        return $servicos;
+
     }
 
     public function update(Request $request, Servicos $servicos)
@@ -55,7 +55,7 @@ class ServicosController extends Controller
             ];
         }
 
-        return $servicos;
+        
     }
 
     public function destroy(Servicos $servico)

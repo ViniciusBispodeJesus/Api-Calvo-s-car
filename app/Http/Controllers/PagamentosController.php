@@ -7,59 +7,60 @@ use Illuminate\Http\Request;
 
 class PagamentosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+    public function index(){
+        return Pagamentos::orderBy('id_pagamentos')->get();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+
+    public function store(Request $request){
+        $pagamento = new Pagamentos;
+
+        $pagamento->tipo = $request->input('tipo');
+        $pagamento->valor = $request->input('valor');
+
+        try {
+            $pagamento->save();
+            return $pagamento;
+        } catch (\Exception $e) {
+            return [
+                "status" => "ERROR",
+                "message" => $e->getMessage()
+            ];
+        }
+
+        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+
+    public function show(int $id){
+        $result = Pagamentos::find($id);
+
+        if($result) return $result;
+
+        return [];
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Pagamentos $pagamentos)
+ 
+    public function update(Request $request, int $id)
     {
-        //
+        $pagamento = Pagamentos::find($id);
+
+        $pagamento->tipo = $request->input('tipo');
+        $pagamento->valor = $request->input('valor');
+
+        try {
+            $pagamento->save();
+            return $pagamento;
+        } catch (\Exception $e) {
+            return [
+                "status" => "ERROR",
+                "message" => $e->getMessage()
+            ];
+        }
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Pagamentos $pagamentos)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Pagamentos $pagamentos)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Pagamentos $pagamentos)
-    {
-        //
+    public function destroy(int $id){
+        $result  = Pagamentos::destroy($id);
     }
 }
