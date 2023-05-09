@@ -24,7 +24,6 @@ class VeiculosController extends Controller{
 
         $veiculo = new Veiculo;
 
-        $veiculo->id_veiculo = $valor['id'];
         $veiculo->ano_fabricacao = $valor['ano'];
         $veiculo->chassi = $valor['chassi'];
         $veiculo->statuss = $valor['status'];

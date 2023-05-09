@@ -12,15 +12,7 @@ class FornecedoresController extends Controller
      */
     public function index()
     {
-        return Fornecedores::all();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return Fornecedores::orderBy('id_marca')->get();
     }
 
     /**
@@ -28,38 +20,77 @@ class FornecedoresController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $valor = $request->input();
+
+        $fornecedores = new Fornecedores;
+
+        $fornecedores->cnpj = $valor['cnpj'];
+        $fornecedores->razao_social = $valor['razao_social'];
+        $fornecedores->endereco = $valor['endereco'];
+        $fornecedores->telefone = $valor['telefone'];
+        $fornecedores->id_marca = $valor['id_marca'];
+
+        try{
+            $fornecedores->save();
+        }catch(\Exception $e){
+            return [
+                "status" => "ERROR",
+                "message" => $e->getMessage()
+            ];
+        }
+
+        return $valor;
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Fornecedores $fornecedores)
+    public function show(int $cnpj)
     {
-        //
-    }
+        $result = Fornecedores::find($cnpj);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Fornecedores $fornecedores)
-    {
-        //
+        if($result) return $result;
+
+        return [];
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Fornecedores $fornecedores)
+    public function update(Request $request, int $cnpj)
     {
-        //
+        $valor = $request->input();
+
+        $fornecedores = Fornecedores::find($cnpj);
+
+        foreach($valor as $c => $v){
+            if($c === "cnpj") $fornecedores->cnpj = $v;
+            if($c === "razao_social") $fornecedores->razao_social = $v;
+            if($c === "endereco") $fornecedores->endereco = $v;
+            if($c === "telefone") $fornecedores->telefone = $v;
+            if($c === "id_marca") $fornecedores->id_marca = $v;
+        }
+
+        try{
+            $fornecedores->save();
+            return $valor;
+        }catch(\Exception $e){
+            return [
+                "status" => "ERROR",
+                "message" => $e->getMessage()
+            ];
+        }
+
+        return $fornecedores;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Fornecedores $fornecedores)
+    public function destroy(int $id)
     {
-        //
+        $result = Fornecedores::destroy($id);
+
+        return $result;
     }
 }

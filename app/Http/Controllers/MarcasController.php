@@ -39,7 +39,8 @@ class MarcasController extends Controller
         return $valor;
     }
 
-    public function destroy(int $id){
+    public function destroy(int $id)
+    {
         $result = Marca::destroy($id);
 
         return $result;
