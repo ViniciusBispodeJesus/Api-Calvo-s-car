@@ -39,6 +39,29 @@ class MarcasController extends Controller
         return $valor;
     }
 
+    public function update(Request $request, int $id)
+    {
+        $valor = $request->input();
+
+        $marcas = Marcas::find($id);
+
+        foreach($valor as $c => $v){
+            if($c === "nome") $funcionarios->razao_social = $v;
+        }
+
+        try{
+            $marcas->save();
+            return $valor;
+        }catch(\Exception $e){
+            return [
+                "status" => "ERROR",
+                "message" => $e->getMessage()
+            ];
+        }
+
+        return $valor;
+    }
+
     public function destroy(int $id)
     {
         $result = Marca::destroy($id);
