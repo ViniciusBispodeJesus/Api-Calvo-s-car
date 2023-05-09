@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Veiculo;
 use App\Models\Vendas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
+
 
 class VendasController extends Controller
 {
@@ -25,13 +28,33 @@ class VendasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $valor = $request->input();
+
+        $vendas = new Vendas;
+        $vendas->datta = $valor['datta'];
+        $vendas->id_funcionario = $valor['id_funcionario'];
+        $vendas->id_veiculo = $valor['id_veiculo'];
+        $vendas->id_pagamento = $valor['id_pagamento'];
+        $vendas->id_cliente = $valor['id_cliente'];
+
+        try{
+            $vendas->save();
+            DB::statement('UPDATE concessionaria.veiculo SET vendido = true WHERE ' . $vendas->id_veiculo . ' = id_veiculo');
+
+        }catch(\Exception $e){
+            return [
+                "status" => "ERROR",
+                "message" => $e->getMessage()
+            ];
+        }
+        
+        return $valor;
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Vendas $vendas)
+    public function show(int $id)
     {
         $result = Vendas::find($id);
 
