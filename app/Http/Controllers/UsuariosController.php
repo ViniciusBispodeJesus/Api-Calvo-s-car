@@ -5,61 +5,51 @@ namespace App\Http\Controllers;
 use App\Models\Usuarios;
 use Illuminate\Http\Request;
 
+
 class UsuariosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+    public function index(){
+        return Usuarios::orderBy('cpf')->get();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function show(int $cpf){
+        $result = Usuarios::find($cpf);
+
+        if($result) return $result;
+
+        return [];
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+        $valor = $request->input();
+
+        $usuario = new Usuarios;
+
+        $usuario->cpf = $valor['cpf'];
+        $usuario->nome = $valor['nome'];
+        $usuario->sobrenome = $valor['sobrenome'];
+        $usuario->sexo = $valor['sexo'];
+        $usuario->email = $valor['email'];
+        $usuario->senha = $valor['senha'];
+        $usuario->telefone = $valor['telefone'];
+        $usuario->endereco = $valor['endereco'];
+        $usuario->data_nascimento = $valor['data_nascimento'];
+        
+        try{
+            $usuario->save();
+        }catch(\Exception $e){
+            return [
+                "status" => "ERROR",
+                "message" => $e->getMessage()
+            ];
+        }
+        
+        return $valor;
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Usuarios $usuarios)
-    {
-        //
-    }
+    public function destroy(int $cpf){
+        $result = Usuarios::destroy($cpf);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Usuarios $usuarios)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Usuarios $usuarios)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Usuarios $usuarios)
-    {
-        //
+        return $result;
     }
 }

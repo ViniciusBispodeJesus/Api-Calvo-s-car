@@ -9,7 +9,7 @@ class Usuarios extends Model
 {
     use HasFactory;
     protected $table = 'concessionaria.usuario';
-    protected $primaryKey = 'id_usuario';
+    protected $primaryKey = 'cpf';
     const CREATED_AT = null;
     const UPDATED_AT = null;
 }
