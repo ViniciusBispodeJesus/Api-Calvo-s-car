@@ -17,11 +17,7 @@ class VendasController extends Controller
 
     public function create($id)
     {
-        $result = Vendas::find($id);
-
-        if($result) return $result;
-
-        return [];
+        //
     }
 
     /**
@@ -37,7 +33,11 @@ class VendasController extends Controller
      */
     public function show(Vendas $vendas)
     {
-        //
+        $result = Vendas::find($id);
+
+        if($result) return $result;
+
+        return [];
     }
 
     /**

@@ -12,7 +12,7 @@ class FornecedoresController extends Controller
      */
     public function index()
     {
-        //
+        return Fornecedores::all();
     }
 
     /**
