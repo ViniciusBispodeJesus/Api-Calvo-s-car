@@ -32,7 +32,6 @@ class VeiculosController extends Controller{
         $veiculo->cor = $valor['cor'];
         $veiculo->id_modelo = $valor['id_modelo'];
         $veiculo->id_cliente = $valor['id_cliente'];
-        $veiculo->nome = $valor['nome'];
         
         try{
             $veiculo->save();
