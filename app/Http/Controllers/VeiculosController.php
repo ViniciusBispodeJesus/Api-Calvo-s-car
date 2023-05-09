@@ -22,21 +22,21 @@ class VeiculosController extends Controller{
     public function store(Request $request){
         $valor = $request->input();
 
-        $marca = new Veiculo;
+        $veiculo = new Veiculo;
 
-        $marca->id_veiculo = $valor['id'];
-        $marca->ano_fabricacao = $valor['ano'];
-        $marca->chassi = $valor['chassi'];
-        $marca->statuss = $valor['status'];
-        $marca->vendido = $valor['vendido'];
-        $marca->placa = $valor['placa'];
-        $marca->cor = $valor['cor'];
-        $marca->id_modelo = $valor['id_modelo'];
-        $marca->id_cliente = $valor['id_cliente'];
-        $marca->nome = $valor['nome'];
+        $veiculo->id_veiculo = $valor['id'];
+        $veiculo->ano_fabricacao = $valor['ano'];
+        $veiculo->chassi = $valor['chassi'];
+        $veiculo->statuss = $valor['status'];
+        $veiculo->vendido = $valor['vendido'];
+        $veiculo->placa = $valor['placa'];
+        $veiculo->cor = $valor['cor'];
+        $veiculo->id_modelo = $valor['id_modelo'];
+        $veiculo->id_cliente = $valor['id_cliente'];
+        $veiculo->nome = $valor['nome'];
         
         try{
-            $marca->save();
+            $veiculo->save();
         }catch(\Exception $e){
             return [
                 "status" => "ERROR",
