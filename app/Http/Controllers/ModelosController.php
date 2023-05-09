@@ -21,6 +21,8 @@ class ModelosController extends Controller
   
     public function store(Request $request){
         $modelo = new Modelo();
+
+        $modelo->id_modelo = $request->input('id_modelo');
         $modelo->ano = $request->input('ano');
         $modelo->versao = $request->input('versao');
         $modelo->peso = $request->input('peso');
@@ -30,31 +32,44 @@ class ModelosController extends Controller
         $modelo->preco = $request->input('preco');
         $modelo->ipva = $request->input('ipva');
         $modelo->id_marca = $request->input('id_marca');
-        $modelo->save();
+
+        try{
+            $modelo->save();
+        }catch(\Exception $e){
+            return [
+                "status" => "ERROR",
+                "message" => $e->getMessage()
+            ];
+        }
 
         return $modelo;
     }
 
 
-    public function destroy(Request $request, Modelo $modelo){
-        $modelo->delete();
-
-        return ['message' => 'Modelo deletado com sucesso'];
+    public function destroy(int $id){
+        return Modelo::destroy($id);
     }
 
-   
-    public function update(Request $request, Modelo $modelo){
-        $modelo->ano = $request->input('ano');
-        $modelo->versao = $request->input('versao');
-        $modelo->peso = $request->input('peso');
-        $modelo->cambio = $request->input('cambio');
-        $modelo->potencia_motor = $request->input('potencia_motor');
-        $modelo->motor = $request->input('motor');
-        $modelo->preco = $request->input('preco');
-        $modelo->ipva = $request->input('ipva');
-        $modelo->id_marca = $request->input('id_marca');
-        $modelo->save();
+    public function update(Request $request, int $id){
+        $valor = $request->input();
 
-        return $modelo;
+        $modelo = Modelo::find($id);
+
+        foreach($valor as $c => $v){
+            if($c === "preco") $modelo->preco = $v;
+            if($c === "ipva") $modelo->ipva = $v;
+        }
+
+        try{
+            $modelo->save();
+            return $valor;
+        }catch(\Exception $e){
+            return [
+                "status" => "ERROR",
+                "message" => $e->getMessage()
+            ];
+        }
+
+        return $valor;
     }
 }

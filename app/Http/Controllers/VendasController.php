@@ -15,12 +15,7 @@ class VendasController extends Controller
      */
     public function index()
     {
-        return Vendas::all();
-    }
-
-    public function create($id)
-    {
-        //
+        return Vendas::orderBy('id_venda')->get();
     }
 
     /**
@@ -31,7 +26,7 @@ class VendasController extends Controller
         $valor = $request->input();
 
         $vendas = new Vendas;
-        $vendas->datta = $valor['datta'];
+        $vendas->datta = $valor['data'];
         $vendas->id_funcionario = $valor['id_funcionario'];
         $vendas->id_veiculo = $valor['id_veiculo'];
         $vendas->id_pagamento = $valor['id_pagamento'];
@@ -64,26 +59,10 @@ class VendasController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Vendas $vendas)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Vendas $vendas)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Vendas $vendas)
+    public function destroy(int $id)
     {
-        //
+        return Vendas::destroy($id);
     }
 }

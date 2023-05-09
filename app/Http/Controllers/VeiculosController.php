@@ -66,12 +66,9 @@ class VeiculosController extends Controller{
                 "message" => $e->getMessage()
             ];
         }
-
     }
 
     public function destroy(int $id){
-        $veiculo = Veiculo::destroy($id);
-        
-        return $veiculo;
+        return Veiculo::destroy($id);
     }
 }

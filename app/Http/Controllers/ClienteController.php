@@ -51,8 +51,6 @@ class ClienteController extends Controller
     }
 
     public function destroy(int $id){
-        $result = Cliente::destroy($id);
-
-        return $result;
+        return Cliente::destroy($id);
     }
 }

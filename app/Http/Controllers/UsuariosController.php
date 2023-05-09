@@ -56,7 +56,6 @@ class UsuariosController extends Controller
         foreach($valor as $c => $v){
             if($c === "nome") $usuaruio->nome = $v;
             if($c === "sobrenome") $usuaruio->sobrenome = $v;
-            if($c === "sexo") $usuaruio->sexo = $v;
             if($c === "email") $usuaruio->email = $v;
             if($c === "senha") $usuaruio->senha = $v;
             if($c === "telefone") $usuaruio->telefone = $v;
@@ -77,8 +76,6 @@ class UsuariosController extends Controller
     }
 
     public function destroy(int $cpf){
-        $result = Usuarios::destroy($cpf);
-
-        return $result;
+        return Usuarios::destroy($cpf);
     }
 }

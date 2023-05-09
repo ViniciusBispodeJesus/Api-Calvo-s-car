@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Solicitacoes extends Model
 {
     use HasFactory;
-    protected $table = 'concessionaria.solicitacoes';
-    protected $primaryKey = 'id_solicitacoes';
+    protected $table = 'concessionaria.solicitacao';
+    protected $primaryKey = 'id_solicitacao';
     const CREATED_AT = null;
     const UPDATED_AT = null;
 }

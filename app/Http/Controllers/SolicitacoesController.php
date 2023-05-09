@@ -48,21 +48,7 @@ class SolicitacoesController extends Controller
         $solicitacao = Solicitacoes::find($id);
 
         foreach ($valor as $chave => $v) {
-            if ($chave === "statuss") {
-                $solicitacao->statuss = $v;
-            }
-            if ($chave === "id_servico") {
-                $solicitacao->id_servico = $v;
-            }
-            if ($chave === "id_funcionario") {
-                $solicitacao->id_funcionario = $v;
-            }
-            if ($chave === "id_veiculo") {
-                $solicitacao->id_veiculo = $v;
-            }
-            if ($chave === "id_cliente") {
-                $solicitacao->id_cliente = $v;
-            }
+            if ($chave === "statuss") $solicitacao->statuss = $v;
         }
 
         try {
@@ -74,15 +60,12 @@ class SolicitacoesController extends Controller
                 "message" => $e->getMessage()
             ];
         }
-
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(int $id){
-        $result = Solicitacoes::destroy($id);
-
-        return $result;
+        return Solicitacoes::destroy($id);
     }
 }

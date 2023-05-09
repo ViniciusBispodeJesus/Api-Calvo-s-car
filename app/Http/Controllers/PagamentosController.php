@@ -8,9 +8,8 @@ use Illuminate\Http\Request;
 class PagamentosController extends Controller
 {
     public function index(){
-        return Pagamentos::orderBy('id_pagamentos')->get();
+        return Pagamentos::orderBy('id_pagamento')->get();
     }
-
 
     public function store(Request $request){
         $pagamento = new Pagamentos;
@@ -27,10 +26,7 @@ class PagamentosController extends Controller
                 "message" => $e->getMessage()
             ];
         }
-
-        
     }
-
 
     public function show(int $id){
         $result = Pagamentos::find($id);
@@ -40,27 +36,7 @@ class PagamentosController extends Controller
         return [];
     }
 
- 
-    public function update(Request $request, int $id)
-    {
-        $pagamento = Pagamentos::find($id);
-
-        $pagamento->tipo = $request->input('tipo');
-        $pagamento->valor = $request->input('valor');
-
-        try {
-            $pagamento->save();
-            return $pagamento;
-        } catch (\Exception $e) {
-            return [
-                "status" => "ERROR",
-                "message" => $e->getMessage()
-            ];
-        }
-
-    }
-
     public function destroy(int $id){
-        $result  = Pagamentos::destroy($id);
+        return Pagamentos::destroy($id);
     }
 }

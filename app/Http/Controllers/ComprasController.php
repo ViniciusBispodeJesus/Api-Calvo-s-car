@@ -80,8 +80,6 @@ class ComprasController extends Controller
      */
     public function destroy(int $id)
     {
-        $result = Compras::destroy($id);
-
-        return $result;
+        return Compras::destroy($id);
     }
 }

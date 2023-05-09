@@ -22,7 +22,9 @@ class ServicosController extends Controller
     public function store(Request $request)
     {
         $servicos = new Servicos();
+
         $valor = $request->input();
+
         $servicos->tipo = $valor['tipo'];
         $servicos->valor = $valor['valor'];
 
@@ -35,14 +37,12 @@ class ServicosController extends Controller
                 "message" => $e->getMessage()
             ];
         }
-
-
     }
 
-    public function update(Request $request, Servicos $servicos)
+    public function update(Request $request, int $id)
     {
         $valor = $request->input();
-        $servicos->tipo = $valor['tipo'];
+        
         $servicos->valor = $valor['valor'];
 
         try{
@@ -54,14 +54,10 @@ class ServicosController extends Controller
                 "message" => $e->getMessage()
             ];
         }
-
-        
     }
 
     public function destroy(Servicos $servico)
     {
-        $result = Servicos::destroy($servico);
-
-        return $result;
+        return Servicos::destroy($servico);
     }
 }

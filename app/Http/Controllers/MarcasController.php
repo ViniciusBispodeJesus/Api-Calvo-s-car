@@ -46,7 +46,7 @@ class MarcasController extends Controller
         $marcas = Marca::find($id);
 
         foreach($valor as $c => $v){
-            if($c === "nome") $funcionarios->razao_social = $v;
+            if($c === "nome") $marcas->nome = $v;
         }
 
         try{
@@ -64,8 +64,6 @@ class MarcasController extends Controller
     
     public function destroy(int $id)
     {
-        $result = Marca::destroy($id);
-
-        return $result;
+        return Marca::destroy($id);
     }
 }
