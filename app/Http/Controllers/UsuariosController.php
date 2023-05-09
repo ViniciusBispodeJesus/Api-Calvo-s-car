@@ -47,6 +47,35 @@ class UsuariosController extends Controller
         return $valor;
     }
 
+    public function update(Request $request, int $cpf)
+    {
+        $valor = $request->input();
+
+        $usuaruio = Usuarios::find($cpf);
+
+        foreach($valor as $c => $v){
+            if($c === "nome") $usuaruio->nome = $v;
+            if($c === "sobrenome") $usuaruio->sobrenome = $v;
+            if($c === "sexo") $usuaruio->sexo = $v;
+            if($c === "email") $usuaruio->email = $v;
+            if($c === "senha") $usuaruio->senha = $v;
+            if($c === "telefone") $usuaruio->telefone = $v;
+            if($c === "endereco") $usuaruio->endereco = $v;
+        }
+
+        try{
+            $usuaruio->save();
+            return $valor;
+        }catch(\Exception $e){
+            return [
+                "status" => "ERROR",
+                "message" => $e->getMessage()
+            ];
+        }
+
+        return $usuaruio;
+    }
+
     public function destroy(int $cpf){
         $result = Usuarios::destroy($cpf);
 
