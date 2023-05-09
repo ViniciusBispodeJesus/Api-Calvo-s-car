@@ -45,7 +45,31 @@ class VeiculosController extends Controller{
         return $valor;
     }
 
-    public function delete(int $id){
+    public function update(Request $request, int $id)
+    {
+        $valor = $request->input();
+
+        $veiculo = Veiculo::find($id);
+
+        foreach($valor as $c => $v){
+            if($c === "statuss") $veiculo->statuss = $v;
+            if($c === "vendido") $veiculo->vendido = $v;
+            if($c === "cor") $veiculo->cor = $v;
+        }
+
+        try{
+            $veiculo->save();
+            return $valor;
+        }catch(\Exception $e){
+            return [
+                "status" => "ERROR",
+                "message" => $e->getMessage()
+            ];
+        }
+
+    }
+
+    public function destroy(int $id){
         $veiculo = Veiculo::destroy($id);
         
         return $veiculo;

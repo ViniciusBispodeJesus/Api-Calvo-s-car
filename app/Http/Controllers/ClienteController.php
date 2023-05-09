@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use App\Models\Funcionario;
 
 class ClienteController extends Controller
 {
@@ -23,6 +24,17 @@ class ClienteController extends Controller
         $valor = $request->input();
 
         $cliente = new Cliente;
+
+        $funcionarios = Funcionario::all();
+        $existe = false;
+        foreach($funcionarios as $c => $v){
+            if($c === "cpf" && $v === $valor['cpf']) $existe = true;
+        }
+        
+        if(!$existe) return [
+            "status" => "ERROR",
+            "message" => "CPF already registered as employee"
+        ];        
 
         $cliente->cpf = $valor['cpf'];
         

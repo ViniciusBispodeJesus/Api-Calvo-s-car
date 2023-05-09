@@ -13,15 +13,7 @@ class ComprasController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return Compras::all();
     }
 
     /**
@@ -41,55 +33,50 @@ class ComprasController extends Controller
         $veiculo->cor = $valor['cor'];
         $veiculo->id_modelo = $valor['id_modelo'];
         $veiculo->id_cliente = $valor['id_cliente'];
-        if($veiculo->save()){
-            $puxaID = DB::statement('select max(id_veiculo) from concessionaria.veiculo');
+        try{
+            $veiculo->save();
+            $puxaID = DB::select('select max(id_veiculo) from concessionaria.veiculo');
+
             $compra = new Compras;
             $compra->valor = $valor["valor"];
             $compra->id_funcionario = $valor["id_funcionario"];
             $compra->id_veiculo = $puxaID;
             $compra->id_fornecedor = $valor["id_fornecedor"];
-        }
-        try{
+
             $compra->save();
 
         }catch(\Exception $e){
+            $puxaID = DB::select('select max(id_veiculo) from concessionaria.veiculo')[0]->{"max(id_veiculo)"};
+
+            $result = Veiculo::destroy($puxaID);
+
             return [
                 "status" => "ERROR",
-                "message" => $e->getMessage()
+                "message" => $e->getMessage(),
+                "remove_vehicle" => $result
             ];
         }
-
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Compras $compras)
+    public function show(int $id)
     {
-        //
-    }
+        $result = Compras::find($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Compras $compras)
-    {
-        //
-    }
+        if($result) return $result;
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Compras $compras)
-    {
-        //
+        return [];
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Compras $compras)
+    public function destroy(int $id)
     {
-        //
+        $result = Compras::destroy($id);
+
+        return $result;
     }
 }
