@@ -21,13 +21,13 @@ class ServicosController extends Controller
 
     public function store(Request $request)
     {
-        $servico = new Servicos();
+        $servicos = new Servicos();
         $valor = $request->input();
-        $servico->tipo = $valor['tipo'];
-        $servico->valor = $valor['valor'];
+        $servicos->tipo = $valor['tipo'];
+        $servicos->valor = $valor['valor'];
 
         try{
-            $servico->save();
+            $servicos->save();
             return $valor;
         }catch(\Exception $e){
             return [
@@ -36,7 +36,7 @@ class ServicosController extends Controller
             ];
         }
 
-        return $servico;
+        return $servicos;
     }
 
     public function update(Request $request, Servicos $servicos)
@@ -58,9 +58,9 @@ class ServicosController extends Controller
         return $servicos;
     }
 
-    public function destroy(Servicos $servicos)
+    public function destroy(int $id_servico)
     {
-        $result = Cliente::destroy($id);
+        $result = Servicos::destroy($id_servico);
 
         return $result;
     }
