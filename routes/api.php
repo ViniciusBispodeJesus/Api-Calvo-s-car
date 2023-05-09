@@ -3,7 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MarcasController;
-use App\Http\Controllers\VeiculosController;
 
 Route::apiResource('/marcas', MarcasController::class);
 Route::apiResource('/modelos', ModelosController::class);
