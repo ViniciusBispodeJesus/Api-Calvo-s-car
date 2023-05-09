@@ -12,15 +12,16 @@ class VendasController extends Controller
      */
     public function index()
     {
-        //
+        return Vendas::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create($id)
     {
-        //
+        $result = Vendas::find($id);
+
+        if($result) return $result;
+
+        return [];
     }
 
     /**
