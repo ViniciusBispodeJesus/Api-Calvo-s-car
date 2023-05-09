@@ -3,62 +3,45 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Cliente;
 
 class ClienteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+    public function index(){
+        return Cliente::orderBy('id_cliente')->get();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function show(int $id){
+        $result = Cliente::find($id);
+
+        if($result) return $result;
+
+        return [];
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    // public function store(Request $request){
+    //     $valor = $request->input();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+    //     $cliente = new Cliente;
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+    //     $cliente->id_Cliente = $valor['id'];
+    //     $cliente->nome = $valor['nome'];
+        
+    //     try{
+    //         $cliente->save();
+    //     }catch(\Exception $e){
+    //         return [
+    //             "status" => "ERROR",
+    //             "message" => $e->getMessage()
+    //         ];
+    //     }
+        
+    //     return $valor;
+    // }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    // public function destroy(int $id){
+    //     $result = Cliente::destroy($id);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+    //     return $result;
+    // }
 }
