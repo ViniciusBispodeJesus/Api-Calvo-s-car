@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
+use App\Http\Controllers\Controller;
+
 use Illuminate\Support\Facades\DB;
 use App\Models\Compras;
 use Illuminate\Http\Request;
