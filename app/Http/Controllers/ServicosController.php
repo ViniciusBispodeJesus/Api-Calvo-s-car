@@ -22,26 +22,46 @@ class ServicosController extends Controller
     public function store(Request $request)
     {
         $servico = new Servicos();
-        $servico->tipo = $request->input('tipo');
-        $servico->valor = $request->input('valor');
-        $servico->save();
+        $valor = $request->input();
+        $servico->tipo = $valor['tipo'];
+        $servico->valor = $valor['valor'];
+
+        try{
+            $servico->save();
+            return $valor;
+        }catch(\Exception $e){
+            return [
+                "status" => "ERROR",
+                "message" => $e->getMessage()
+            ];
+        }
 
         return $servico;
     }
 
     public function update(Request $request, Servicos $servicos)
     {
-        $servicos->tipo = $request->input('tipo');
-        $servicos->valor = $request->input('valor');
-        $servicos->save();
+        $valor = $request->input();
+        $servicos->tipo = $valor['tipo'];
+        $servicos->valor = $valor['valor'];
+
+        try{
+            $servicos->save();
+            return $valor;
+        }catch(\Exception $e){
+            return [
+                "status" => "ERROR",
+                "message" => $e->getMessage()
+            ];
+        }
 
         return $servicos;
     }
 
     public function destroy(Servicos $servicos)
     {
-        $servicos->delete();
+        $result = Cliente::destroy($id);
 
-        return response()->noContent();
+        return $result;
     }
 }

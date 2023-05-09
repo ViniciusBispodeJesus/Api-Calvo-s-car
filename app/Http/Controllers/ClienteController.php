@@ -19,29 +19,28 @@ class ClienteController extends Controller
         return [];
     }
 
-    // public function store(Request $request){
-    //     $valor = $request->input();
+    public function store(Request $request){
+        $valor = $request->input();
 
-    //     $cliente = new Cliente;
+        $cliente = new Cliente;
 
-    //     $cliente->id_Cliente = $valor['id'];
-    //     $cliente->nome = $valor['nome'];
+        $cliente->cpf = $valor['cpf'];
         
-    //     try{
-    //         $cliente->save();
-    //     }catch(\Exception $e){
-    //         return [
-    //             "status" => "ERROR",
-    //             "message" => $e->getMessage()
-    //         ];
-    //     }
+        try{
+            $cliente->save();
+        }catch(\Exception $e){
+            return [
+                "status" => "ERROR",
+                "message" => $e->getMessage()
+            ];
+        }
         
-    //     return $valor;
-    // }
+        return $valor;
+    }
 
-    // public function destroy(int $id){
-    //     $result = Cliente::destroy($id);
+    public function destroy(int $id){
+        $result = Cliente::destroy($id);
 
-    //     return $result;
-    // }
+        return $result;
+    }
 }
