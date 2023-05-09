@@ -12,17 +12,11 @@ use Illuminate\Database\QueryException;
 
 class VendasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         return Vendas::orderBy('id_venda')->get();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $valor = $request->input();
@@ -48,9 +42,6 @@ class VendasController extends Controller
         return $valor;
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(int $id)
     {
         $result = Vendas::find($id);
@@ -60,9 +51,6 @@ class VendasController extends Controller
         return [];
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(int $id)
     {
         return Vendas::destroy($id);

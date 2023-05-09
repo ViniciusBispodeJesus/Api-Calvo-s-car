@@ -9,17 +9,12 @@ use Illuminate\Http\Request;
 
 class FuncionarioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         return Funcionario::all();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $valor = $request->input();
@@ -54,9 +49,6 @@ class FuncionarioController extends Controller
         return $valor;
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(int $matricula)
     {
         $result = Funcionario::find($matricula);
@@ -66,9 +58,6 @@ class FuncionarioController extends Controller
         return [];
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, int $matricula)
     {
         $valor = $request->input();
@@ -91,9 +80,6 @@ class FuncionarioController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(int $matricula)
     {
         return Funcionario::destroy($matricula);

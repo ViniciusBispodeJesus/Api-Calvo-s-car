@@ -8,17 +8,11 @@ use Illuminate\Http\Request;
 
 class FornecedoresController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         return Fornecedores::orderBy('id_marca')->get();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $valor = $request->input();
@@ -43,9 +37,6 @@ class FornecedoresController extends Controller
         return $valor;
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(int $cnpj)
     {
         $result = Fornecedores::find($cnpj);
@@ -55,9 +46,6 @@ class FornecedoresController extends Controller
         return [];
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, int $cnpj)
     {
         $valor = $request->input();
@@ -82,9 +70,6 @@ class FornecedoresController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(int $id)
     {
         return Fornecedores::destroy($id);

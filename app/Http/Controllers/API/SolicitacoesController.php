@@ -63,9 +63,6 @@ class SolicitacoesController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(int $id){
         return Solicitacoes::destroy($id);
     }

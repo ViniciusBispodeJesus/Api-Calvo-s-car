@@ -11,17 +11,11 @@ use Exception;
 
 class ComprasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         return Compras::all();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $valor = $request->input();
@@ -65,9 +59,6 @@ class ComprasController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(int $id)
     {
         $result = Compras::find($id);
@@ -77,9 +68,6 @@ class ComprasController extends Controller
         return [];
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(int $id)
     {
         return Compras::destroy($id);
