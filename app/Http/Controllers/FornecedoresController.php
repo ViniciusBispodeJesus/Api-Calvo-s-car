@@ -64,9 +64,11 @@ class FornecedoresController extends Controller
         $fornecedores = Fornecedores::find($cnpj);
 
         foreach($valor as $c => $v){
+            if($c === "cnpj") $fornecedores->cnpj = $v;
             if($c === "razao_social") $fornecedores->razao_social = $v;
             if($c === "endereco") $fornecedores->endereco = $v;
             if($c === "telefone") $fornecedores->telefone = $v;
+            if($c === "id_marca") $fornecedores->id_marca = $v;
         }
 
         try{
