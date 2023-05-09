@@ -7,59 +7,41 @@ use Illuminate\Http\Request;
 
 class ServicosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+    public function index(){
+        return Servicos::orderBy('id_servico')->get();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function show(int $id){
+        $result = Servicos::find($id);
+
+        if($result) return $result;
+
+        return [];
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $servico = new Servicos();
+        $servico->tipo = $request->input('tipo');
+        $servico->valor = $request->input('valor');
+        $servico->save();
+
+        return $servico;
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Servicos $servicos)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Servicos $servicos)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Servicos $servicos)
     {
-        //
+        $servicos->tipo = $request->input('tipo');
+        $servicos->valor = $request->input('valor');
+        $servicos->save();
+
+        return $servicos;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Servicos $servicos)
     {
-        //
+        $servicos->delete();
+
+        return response()->noContent();
     }
 }
