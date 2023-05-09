@@ -58,9 +58,9 @@ class ServicosController extends Controller
         return $servicos;
     }
 
-    public function destroy(int $id_servico)
+    public function destroy(Servicos $servico)
     {
-        $result = Servicos::destroy($id_servico);
+        $result = Servicos::destroy($servico);
 
         return $result;
     }
