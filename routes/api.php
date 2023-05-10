@@ -29,3 +29,10 @@ Route::apiResource('/vendas', VendasController::class);
 Route::apiResource('/pagamentos', PagamentosController::class);
 Route::apiResource('/fornecedores', FornecedoresController::class);
 Route::apiResource('/usuarios', UsuariosController::class);
+
+Route::get('/hello', function(Request $reques){
+    return response() -> json([
+        "code"=>200,
+        "message"=>'Hello World'
+    ]);
+});
